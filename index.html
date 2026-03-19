@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Finder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Recipe Finder</h1>
+    </header>
+    <main>
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search by meal name (e.g., chicken curry)">
+            <button id="search-btn">Search</button>
+            <select id="category-dropdown">
+                <option value="">All Categories</option>
+                <!-- Categories will be populated by JS -->
+            </select>
+        </div>
+        <div id="results" class="results-grid">
+            <!-- Recipe cards will be inserted here -->
+        </div>
+    </main>
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="meal-details">
+                <!-- Meal details will be inserted here -->
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+
+
