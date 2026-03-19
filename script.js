@@ -3,6 +3,8 @@ const searchInput = document.getElementById('search-input');
 const searchBtn = document.getElementById('search-btn');
 const categoryDropdown = document.getElementById('category-dropdown');
 const resultsGrid = document.getElementById('results');
+const hero = document.querySelector('.hero');
+const logo = document.querySelector('.logo');
 const modal = document.getElementById('modal');
 const closeBtn = document.querySelector('.close');
 const mealDetails = document.getElementById('meal-details');
@@ -21,6 +23,7 @@ searchInput.addEventListener('keypress', (e) => {
     }
 });
 categoryDropdown.addEventListener('change', filterByCategory);
+logo.addEventListener('click', resetToLanding);
 closeBtn.addEventListener('click', closeModal);
 window.addEventListener('click', (e) => {
     if (e.target === modal) {
@@ -46,6 +49,14 @@ async function loadCategories() {
     }
 }
 
+// Reset to landing page
+function resetToLanding() {
+    hero.classList.remove('hidden');
+    resultsGrid.innerHTML = '';
+    searchInput.value = '';
+    categoryDropdown.value = '';
+}
+
 // Search recipes by name
 async function searchByName() {
     const query = searchInput.value.trim();
@@ -69,6 +80,7 @@ async function filterByCategory() {
     const category = categoryDropdown.value;
     if (!category) {
         resultsGrid.innerHTML = '';
+        hero.classList.remove('hidden');
         return;
     }
 
@@ -87,9 +99,11 @@ function displayRecipes(meals) {
     resultsGrid.innerHTML = '';
     if (!meals) {
         resultsGrid.innerHTML = '<p>No recipes found. TheMealDB has a limited database of recipes. Try searching for common meals, different spellings, or check <a href="https://www.themealdb.com/api.php" target="_blank">TheMealDB API</a> for available recipes.</p>';
+        hero.classList.remove('hidden');
         return;
     }
 
+    hero.classList.add('hidden');
     meals.forEach(meal => {
         const recipeCard = document.createElement('div');
         recipeCard.className = 'recipe-card';

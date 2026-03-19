@@ -1,4 +1,4 @@
-# Recipe Finder Web App
+# Samard's Recipe Finder Web App
 
 A simple, responsive web application for finding recipes using TheMealDB API.
 

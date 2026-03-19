@@ -3,12 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Finder</title>
+    <title>Samard's Recipe Finder</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Recipe Finder</h1>
+        <div class="logo">
+            <svg width="50" height="50" viewBox="0 0 50 50">
+                <circle cx="25" cy="25" r="24" fill="#3498db" stroke="#2980b9" stroke-width="2"/>
+                <text x="25" y="32" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24" font-weight="bold">S</text>
+            </svg>
+        </div>
+        <h1>Samard's Recipe Finder</h1>
     </header>
     <main>
         <div class="search-container">
@@ -18,6 +24,9 @@
                 <option value="">All Categories</option>
                 <!-- Categories will be populated by JS -->
             </select>
+        </div>
+        <div class="hero">
+            <img src="https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Delicious meal" class="hero-image">
         </div>
         <div id="results" class="results-grid">
             <!-- Recipe cards will be inserted here -->
