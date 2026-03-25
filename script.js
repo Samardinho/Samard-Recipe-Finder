@@ -5,9 +5,7 @@
 // 2. RecipePuppy (~10k recipes) - free, no key
 // 3. TheMealDB (~300 recipes) - free, no key
 
-// Load API configuration from config.js
-// IMPORTANT: Edit config.js to add your Spoonacular API key
-document.write('<script src="config.js"><\/script>');
+// NOTE: config.js is loaded in index.html before this script
 
 // DOM elements
 const searchInput = document.getElementById('search-input');
