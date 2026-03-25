@@ -38,4 +38,4 @@ This app uses TheMealDB API (https://www.themealdb.com/api.php) which requires n
 | Missing config.js | Run: `cp config.example.js config.js` then add your API key |
 
 
-Built with vanilla HTML, CSS, and JavaScript. No frameworks required!
+Built with vanilla HTML, CSS, and JavaScript. No frameworks required!!
