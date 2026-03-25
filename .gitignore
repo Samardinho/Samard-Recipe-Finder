@@ -1,0 +1,33 @@
+# Environment files (contain API keys - never commit!)
+.env
+.env.local
+.env.production
+.env*.local
+
+# Configuration files with secrets
+config.js
+config.local.js
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Dependencies (if using Node/build process in future)
+node_modules/
+dist/
+build/
+
+# IDE specific
+.IntelliJ_idea/
+.vscode-insiders/
+dist/
+build/

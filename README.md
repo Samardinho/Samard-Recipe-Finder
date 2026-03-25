@@ -1,6 +1,6 @@
 # Samard's Recipe Finder Web App
 
-A simple, responsive web application for finding recipes using TheMealDB API.
+A web app that searches multiple recipe databases (Spoonacular, RecipePuppy, TheMealDB) to find any recipe.
 
 ## Features
 
@@ -27,6 +27,15 @@ A simple, responsive web application for finding recipes using TheMealDB API.
 
 This app uses TheMealDB API (https://www.themealdb.com/api.php) which requires no API key. Note that TheMealDB has a limited database of recipes, primarily featuring Western and some international dishes. It may not include recipes from all cuisines or regions.
 
-## Browser Compatibility
 
-Works in all modern browsers that support ES6 features and the Fetch API.
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| No recipes found | Try different spellings or add your Spoonacular API key |
+| App won't load | Check browser console (F12), ensure all files are in same folder |
+| CORS errors | Verify internet connection, check API endpoints |
+| Missing config.js | Run: `cp config.example.js config.js` then add your API key |
+
+
+Built with vanilla HTML, CSS, and JavaScript. No frameworks required!
