@@ -2,7 +2,8 @@
 // =================================================
 // This app searches multiple recipe databases with automatic fallback:
 // 1. Spoonacular (100k+ recipes) - requires API key
-// 2. TheMealDB (~300 recipes) - free, no key
+// 2. RecipePuppy (~10k recipes) - free, no key
+// 3. TheMealDB (~300 recipes) - free, no key
 
 // Load API configuration from config.js
 // IMPORTANT: Edit config.js to add your Spoonacular API key
@@ -101,6 +102,8 @@ async function searchByName() {
 
             if (provider === 'spoonacular') {
                 recipes = await searchSpoonacular(query);
+            } else if (provider === 'recipepuppy') {
+                recipes = await searchRecipePuppy(query);
             } else if (provider === 'themealdb') {
                 recipes = await searchTheMealDB(query);
             }
@@ -203,6 +206,23 @@ async function searchSpoonacular(query) {
     return null;
 }
 
+// Search RecipePuppy API (free, ~10k recipes, includes international)
+async function searchRecipePuppy(query) {
+    const url = `${API_CONFIG.recipepuppy}?q=${encodeURIComponent(query)}&p=1&format=json`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    if (data.results) {
+        return data.results.map(recipe => ({
+            title: recipe.title,
+            image: recipe.thumbnail || 'https://via.placeholder.com/300x200?text=No+Image',
+            source: 'recipepuppy',
+            sourceUrl: recipe.href
+        }));
+    }
+    return null;
+}
+
 // Search TheMealDB API (~300 recipes, no API key required)
 async function searchTheMealDB(query) {
     const url = `${API_CONFIG.themealdb.baseUrl}/search.php?s=${encodeURIComponent(query)}`;
@@ -231,6 +251,8 @@ async function loadRecipeDetails(recipe) {
     try {
         if (recipe.source === 'spoonacular') {
             await loadSpoonacularDetails(recipe.id);
+        } else if (recipe.source === 'recipepuppy') {
+            loadRecipePuppyDetails(recipe);
         } else if (recipe.source === 'themealdb') {
             await loadTheMealDBDetails(recipe.id);
         }
@@ -306,6 +328,17 @@ function displayRecipeDetails(meal) {
         <p>${meal.instructions.replace(/\r\n/g, '<br>')}</p>
         ${meal.sourceUrl ? `<p><a href="${meal.sourceUrl}" target="_blank" class="source-link">View original recipe →</a></p>` : ''}
     `;
+}
+
+// RecipePuppy doesn't have detailed view - just show link
+function loadRecipePuppyDetails(recipe) {
+    displayRecipeDetails({
+        title: recipe.title,
+        image: recipe.image,
+        ingredients: ['Ingredients not available via RecipePuppy'],
+        instructions: 'RecipePuppy provides recipe links only. Click below to view the full recipe on the original website.',
+        sourceUrl: recipe.sourceUrl
+    });
 }
 
 // Close modal
